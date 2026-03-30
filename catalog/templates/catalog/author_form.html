@@ -3,7 +3,7 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-    {% if perms.catalog.create_author or perms.catalog.edit_author %}
+    {% if user.is_superuser %}
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
