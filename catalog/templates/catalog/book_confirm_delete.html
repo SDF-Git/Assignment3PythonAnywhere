@@ -1,0 +1,17 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+  {% if user.is_superuser %}
+    <h1>Delete Book</h1>
+    <p>Are you sure you want to delete <strong>{{ book.title }}</strong>?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-danger" value="Yes, delete">
+      <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  {% else %}
+    <p>You do not have permission to access this feature.</p>
+    <a href="{% url 'index' %}">Home</a>
+  {% endif %}
+{% endblock %}
